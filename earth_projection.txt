@@ -1,0 +1,20 @@
+eye 0 0 0
+viewdir 0 0 -1
+updir 0 1 0
+hfov 60
+imsize 512 256
+bkgcolor 0.1 0.1 0.1
+light -2 1 0 1 1 1 1
+mtlcolor 1 0 1 1 1 1 0.2 0.4 0.4 20
+texture earthtexture.ppm
+sphere 0 0 -4 1
+v -4 -1 -6
+v 4 -1 -6
+v 4 1 -6
+v -4 1 -6
+vt 0 0
+vt 0 1
+vt 1 0
+vt 1 1
+f 1/2 2/4 4/1
+f 2/4 3/3 4/1
