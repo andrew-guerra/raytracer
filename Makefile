@@ -1,13 +1,12 @@
 CFLAGS = -g
 CC = g++ $(CFLAGS)
 SHELL = /bin/bash
-CWD = $(shell pwd | sed 's/.*\///g')
 
 .PHONY: all clean
 
 all: raycasting
 
-raycasting: raycasting.cpp PPMGenerator.cpp vectors.cpp
+raycasting: src/raycasting.cpp src/PPMGenerator.cpp src/vectors.cpp
 	$(CC) -o $@ $^
 
 clean:
@@ -15,6 +14,6 @@ clean:
 
 help:
 	@echo 'Typical usage is:'
-	@echo '  > make                          # build all program (executable is raycasting
+	@echo '  > make                          # build program (executable is raycasting)
 	@echo '  > make clean                    # remove all compiled items'
 
