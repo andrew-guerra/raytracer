@@ -21,7 +21,8 @@ static string optionalKeywords[] = {"mtlcolor", "light", "attlight", "depthcuein
 // returns if string text is a valid file name
 bool isFileName(string text) {
 	// uses regex pattern to ensure valid file name 
-	return regex_match(text, regex("[a-zA-Z0-9\\-_]+\\.[a-zA-Z]+"));
+	return regex_match(text, regex("^(.+)\\/([^\\/]+)$")) || 
+		   regex_match(text, regex("[a-zA-Z0-9\\-_]+\\.[a-zA-Z]+"));
 }
 
 // returns if string text is an integer
@@ -464,7 +465,7 @@ bool getTexture(ifstream& specFileStream, texture_t* texture) {
 	specFileStream >> filename;
 
 	if(!isFileName(filename)) {
-		cout << "invalid file name for ";
+		cout << "invalid filepath name for ";
 		return false;
 	}
 
@@ -997,7 +998,7 @@ string ensureValidArguments(int argc, char** argv) {
 	
 	// ensure file name is valid
 	if(!isFileName(argv[1])) {
-		cout << "Program expected well formed filename" << endl;
+		cout << "Program expected well formed filepath" << endl;
 		return "";
 	}
 
