@@ -4,16 +4,19 @@ SHELL = /bin/bash
 
 .PHONY: all clean
 
-all: raycasting
+all: raytracing
 
-raycasting: src/raycasting.cpp src/PPMGenerator.cpp src/vectors.cpp
+raytracing: src/raycasting.cpp src/PPMGenerator.cpp src/vectors.cpp
 	$(CC) -o $@ $^
 
+run: raytracing
+	./raytracing $(sceneFile)
+
 clean:
-	rm -f raycasting
+	rm -f raytracing
 
 help:
-	@echo 'Typical usage is:'
-	@echo '  > make                          # build program (executable is raycasting)
+	@echo 'Usage:'
+	@echo '  > make                          # build program (executable is raytracing)'
+	@echo '  > make run sceneFile=FILEPATH   # run program with FILEPATH scene descriptor file'
 	@echo '  > make clean                    # remove all compiled items'
-
