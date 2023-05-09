@@ -4,11 +4,11 @@ Initially developed for the CSCI 5607 course at the University of Minnesota - Tw
 
 ## Supports the following features:
 - Spheres
-- 3D models in .obj format
+- 3D models in `.obj` format
 - Point and directional lights
 - Shading
 - Shadows
-- Illumination via Phong Illumination Model
+- Illumination via [Phong Illumination Model](https://en.wikipedia.org/wiki/Phong_reflection_model)
 - Texture mapping
 - Reflections
 - Refractions
