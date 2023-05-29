@@ -12,8 +12,15 @@ raytracing: src/raycasting.cpp src/PPMGenerator.cpp src/vectors.cpp
 run: raytracing
 	./raytracing $(sceneFile)
 
+docs:
+	cd docs; doxygen Doxyfile
+
 clean:
 	rm -f raytracing
+
+clean-docs:
+	rm -rf docs/html
+	rm -rf docs/latex
 
 help:
 	@echo 'Usage:'

@@ -374,6 +374,11 @@ color_t traceRay(ray_t& ray, sceneSpecs_t specs) {
 }
 
 int main(int argc, char** argv) {
+	if(argc != 1) {
+		std::cout << "Usage - args" << std::endl;
+		return 1;
+	}
+
 	// seed random generator
 	srand(time(0));
 
