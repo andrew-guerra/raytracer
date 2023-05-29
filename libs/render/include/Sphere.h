@@ -20,6 +20,10 @@ class Sphere : public SceneEntity {
         */
         Sphere(Vector3* center, double radius);
 
+        virtual float intersectionDistance(Ray* ray);
+
+        virtual const Color* getPointColor(Vector3* intersectionPoint);
+        
     private:
         double radius;
 };

@@ -44,20 +44,21 @@ class SceneEntity {
         virtual void setPosition(Vector3* position);
 
         /**
-         * @brief Returns if ray intersects SceneEntity object
+         * @brief Returns the distance along ray for intersection with the SceneEntity object
          * @param ray The ray to test for an intersection with the SceneEntity object
-         * @returns bool value for if ray intersects SceneEntity object
+         * @returns The distance along ray for intersection with the SceneEntity object
         */
-        virtual bool intersects(Ray* ray) = 0;
+        virtual float intersectionDistance(Ray* ray) = 0;
 
         /**
          * @brief Returns Color object at point on SceneEntity object
+         * @param intersectionPoint The point to get color from on the SceneEntity object
          * @returns Color object at point on SceneEntity object
          * 
-         * The Vector3 point is assumed to be on the surface of the SceneEntity object. 
-         * Behavior is undefined for given that are not on the surface. 
+         * The Vector3 intersectionPoint is assumed to be on the surface of the SceneEntity object. 
+         * Behavior is undefined for points that are not on the surface. 
         */
-        virtual Color* getPointColor() = 0;
+        virtual const Color* getPointColor(Vector3* intersectionPoint) = 0;
 
         private:
             Vector3* position;
