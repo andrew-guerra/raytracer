@@ -38,6 +38,10 @@ float Vector3::magnitude() {
     return std::sqrt(this->dotProduct(*this));
 }
 
+float Vector3::sum() {
+    return this->x + this->y + this->z;
+}
+
 float Vector3::distance(Vector3 otherVec) {
     return (*this - otherVec).magnitude();
 }
@@ -98,6 +102,14 @@ Vector3 Vector3::crossProduct(Vector3 otherVec) {
     float xNew = this->y * otherVec.z - this->z * otherVec.y;
     float yNew = this->z * otherVec.x - this->x * otherVec.z;
     float zNew = this->x * otherVec.y - this->y * otherVec.x;
+
+    return Vector3(xNew, yNew, zNew);
+}
+
+Vector3 Vector3::multiplyVector(Vector3 otherVec) {
+    float xNew = this->x * otherVec.x;
+    float yNew = this->y * otherVec.y;
+    float zNew = this->z * otherVec.z;
 
     return Vector3(xNew, yNew, zNew);
 }

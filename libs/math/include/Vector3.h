@@ -61,6 +61,12 @@ class Vector3 {
         float magnitude();
 
         /**
+         * @brief Returns sum of entities of the Vector3 object
+         * @return The sum of entities of the Vector3 object
+        */
+        float sum();
+
+        /**
          * @brief Returns distance between the Vector3 object and the Vector3 otherVec
          * @param otherVec The vector to be calculated distance between
          * @return The distance between the Vector3 object and the Vector3 otherVec
@@ -127,6 +133,13 @@ class Vector3 {
          * @return The Vector3 object made by the cross product of the Vector3 object and the Vector3 otherVec
         */
         Vector3 crossProduct(Vector3 otherVec);
+
+        /**
+         * @brief Returns the Vector3 object made by the product of the Vector3 object and the Vector3 otherVec
+         * @param otherVec The vector to multiply by product
+         * @return The Vector3 object made by the product of the Vector3 object and the Vector3 otherVec
+        */
+        Vector3 multiplyVector(Vector3 otherVec);
 
         /**
          * @brief Returns the Vector3 object made by the average of the Vector3 object and the Vector3 otherVec
