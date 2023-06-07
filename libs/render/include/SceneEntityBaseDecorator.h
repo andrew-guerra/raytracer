@@ -25,6 +25,9 @@ class SceneEntityBaseDecorator : public SceneEntity {
         */
         SceneEntityBaseDecorator();
 
+        virtual float intersectionDistance(Ray* ray);
+        virtual const Color* getPointColor(Vector3* intersectionPoint);
+        
     protected:
         SceneEntity* entity;
 };

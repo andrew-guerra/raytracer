@@ -4,19 +4,31 @@ SHELL = /bin/bash
 
 .PHONY: all clean
 
-all: raytracing
+all: math image render raytracer-renderer
 
-raytracing: src/raycasting.cpp src/PPMGenerator.cpp src/vectors.cpp
-	$(CC) -o $@ $^
+math: build
+	cd libs/math; make
 
-run: raytracing
-	./raytracing $(sceneFile)
+image: build math
+	cd libs/image; make
+
+render: build math image
+	cd libs/render; make
+
+raytracer-renderer: build math image render
+	cd apps/raytracer-renderer; make
+
+build:
+	mkdir -p build
+
+run: build
+	./build/bin/raytracer-renderer $(sceneFile)
 
 docs:
 	cd docs; doxygen Doxyfile
 
 clean:
-	rm -f raytracing
+	rm -rf build
 
 clean-docs:
 	rm -rf docs/html

@@ -1,13 +1,15 @@
 #include "../include/Sphere.h"
+#include <iostream>
 
 Sphere::Sphere(Vector3* center, double radius) : SceneEntity(center) {
     this->radius = radius;
 }
 
 float Sphere::intersectionDistance(Ray* ray) {
+    ray->getDirection()->noramlize();
     Vector3 diffVector = *ray->getOrigin() - *this->getPosition();
 
-    float A = ray->getDirection()->dotProduct(&(ray->getDirection()));
+    float A = ray->getDirection()->dotProduct(*ray->getDirection());
     float B = 2.0 * ray->getDirection()->dotProduct(diffVector);
     float C = diffVector.dotProduct(diffVector) - (this->radius * this->radius);
     float discriminate = (B * B) - (4 * A * C);
@@ -30,5 +32,5 @@ float Sphere::intersectionDistance(Ray* ray) {
 }
 
 const Color* Sphere::getPointColor(Vector3* intersectionPoint) {
-    return &RED;
+    return &BLUE;
 }

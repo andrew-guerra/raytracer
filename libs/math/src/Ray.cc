@@ -11,13 +11,16 @@ Ray::Ray() {
 }
 
 Ray::Ray(const Ray& copyRay) {
-    this->origin = copyRay.origin;
-    this->direction = copyRay.direction;
+    this->origin = (Vector3*) malloc(sizeof(Vector3));
+    this->direction = (Vector3*) malloc(sizeof(Vector3)); 
+
+    *this->origin = *copyRay.origin;
+    *this->direction = *copyRay.direction;
 }
 
 Ray::~Ray() {
-    delete this->origin;
-    delete this->direction;
+    //delete this->origin;
+    //delete this->direction;
 }
 
 Vector3* Ray::getOrigin() {
@@ -27,8 +30,6 @@ Vector3* Ray::getOrigin() {
 Vector3* Ray::getDirection() {
     return this->direction;
 }
-
-Vector3 getDirection();
 
 Vector3 Ray::getMemberPoint(float scaler) {
     return *this->origin + (*this->direction * scaler);
@@ -48,4 +49,8 @@ void Ray::rotate(float xTheta, float yTheta, float zTheta) {
 
 void Ray::translate(Vector3 translationVec){
     this->origin->add(translationVec);
+}
+
+std::string Ray::toString() {
+    return this->origin->toString() + " " + this->direction->toString();
 }

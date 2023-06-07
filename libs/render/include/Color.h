@@ -38,10 +38,10 @@ class Color {
         double b;
 };
 
-const Color RED = Color(1, 0, 0);
-const Color GREEN = Color(0, 1, 0);
-const Color BLUE = Color(0, 0, 1);
-const Color WHITE = Color(1, 1, 1);
-const Color BLACK = Color(0, 0, 0);
+const Color RED = Color(1.0f, 0.0f, 0.0f);
+const Color GREEN = Color(0.0f, 1.0f, 0.0f);
+const Color BLUE = Color(0.0f, 0.0f, 1.0f);
+const Color WHITE = Color(1.0f, 1.0f, 1.0f);
+const Color BLACK = Color(0.0f, 0.0f, 0.0f);
 
 #endif

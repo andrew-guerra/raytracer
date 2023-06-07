@@ -75,6 +75,12 @@ class Ray {
         */
         void translate(Vector3 translationVec);
 
+        /**
+         * @brief Returns the std::string representation of the Ray object
+         * @return The std::string representation of the Ray object
+        */
+        std::string toString();
+
     private:
         Vector3* origin;
         Vector3* direction;

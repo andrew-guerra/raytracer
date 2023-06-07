@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include <algorithm>
+#include <string>
 
 /**
  * @class Vector3
@@ -149,6 +150,12 @@ class Vector3 {
         Vector3 average(Vector3 otherVec);
 
         /**
+         * @brief Returns the Vector3 object made by the negating the Vector3 object
+         * @return The Vector3 object made by the negating the Vector3 object
+        */
+        Vector3 operator-();
+
+        /**
          * @brief Returns the Vector3 object made by the sum of the Vector3 object and the Vector3 otherVec
          * @param otherVec The vector to add by
          * @return The Vector3 object made by the sum of the Vector3 object and the Vector3 otherVec
@@ -170,6 +177,13 @@ class Vector3 {
         Vector3 operator*(float coefficient);
 
         /**
+         * @brief Returns the Vector3 object made by the quotient of the Vector3 object and coefficient
+         * @param divisor The divisor to divide by
+         * @return The Vector3 object made by the quoient of the Vector3 object and divisor
+        */
+        Vector3 operator/(float divisor);
+
+        /**
          * @brief Returns if the Vector3 object and the Vector3 object are equal within delta
          * @param otherVec The vector to compare
          * @param delta The delta that entries can be contained within for equality 
@@ -183,6 +197,12 @@ class Vector3 {
          * @return The boolean value for if the Vector3 object and the Vector3 object are equal within a delta
         */
         bool equals(Vector3 otherVec);
+
+        /**
+         * @brief Returns the std::string representation of the Vector3 object
+         * @return The std::string representation of the Vector3 object
+        */
+        std::string toString();
 
     private:
         float x;

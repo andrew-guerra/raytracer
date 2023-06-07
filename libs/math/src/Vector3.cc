@@ -95,7 +95,7 @@ void Vector3::multiplyCoefficient(float coefficient) {
 }
 
 float Vector3::dotProduct(Vector3 otherVec) {
-    return this->x * this->x + this->y * this->y + this->z * this->z;
+    return this->x * otherVec.x + this->y * otherVec.y + this->z * otherVec.z;
 }
 
 Vector3 Vector3::crossProduct(Vector3 otherVec) {
@@ -118,6 +118,14 @@ Vector3 Vector3::average(Vector3 otherVec) {
     float xNew = (this->x + otherVec.x) / 2.0;
     float yNew = (this->y + otherVec.y) / 2.0;
     float zNew = (this->z + otherVec.z) / 2.0;
+
+    return Vector3(xNew, yNew, zNew);
+}
+
+Vector3 Vector3::operator-() {
+    float xNew = -this->x;
+    float yNew = -this->y;
+    float zNew = -this->z;
 
     return Vector3(xNew, yNew, zNew);
 }
@@ -146,6 +154,14 @@ Vector3 Vector3::operator*(float coefficient) {
     return Vector3(xNew, yNew, zNew);
 }
 
+Vector3 Vector3::operator/(float divisor) {
+    float xNew = this->x / divisor;
+    float yNew = this->y / divisor;
+    float zNew = this->z / divisor;
+
+    return Vector3(xNew, yNew, zNew);
+}
+
 bool Vector3::equals(Vector3 otherVec, float delta) {
     return std::abs(this->x - otherVec.x) <= delta &&
            std::abs(this->y - otherVec.y) <= delta &&
@@ -155,4 +171,8 @@ bool Vector3::equals(Vector3 otherVec, float delta) {
 
 bool Vector3::equals(Vector3 otherVec) {
     return this->equals(otherVec, 0.01);
+}
+
+std::string Vector3::toString() {
+    return "[" + std::to_string(this->x) + ", " + std::to_string(this->y) + ", " + std::to_string(this->z) + "]";
 }
