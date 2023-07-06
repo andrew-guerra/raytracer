@@ -26,15 +26,20 @@ class RaytracerRenderer : public SceneRenderer {
 
         virtual Color** renderScene();
 
+        virtual float getPercentageSceneRendered();
+
     private:
         Ray** rays;
         float viewWindowWidth;
         float viewWindowHeight;
         float viewDistance;
 
+        int currRow;
+        int currCol;
+
         Ray** generateRays();
         Color** generatePixelColors();
-        const Color* traceRay(Ray ray);
+        Color* traceRay(Ray ray);
         float getShadowFlag(Ray ray);
         SceneEntity* getClosestEntity(Ray ray);
 

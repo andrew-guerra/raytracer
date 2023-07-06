@@ -1,5 +1,5 @@
-#ifndef MATERIAL_DECORATOR_H
-#define MATERIAL_DECORATOR_H
+#ifndef LIGHT_DECORATOR_H
+#define LIGHT_DECORATOR_H
 
 #include "SceneEntityBaseDecorator.h"
 

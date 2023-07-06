@@ -4,6 +4,7 @@
 #include "../../math/include/Vector3.h"
 #include "../../math/include/Ray.h"
 #include "Color.h"
+#include <vector>
 
 /**
  * @class SceneEntity
@@ -58,7 +59,9 @@ class SceneEntity {
          * The Vector3 intersectionPoint is assumed to be on the surface of the SceneEntity object. 
          * Behavior is undefined for points that are not on the surface. 
         */
-        virtual const Color* getPointColor(Vector3* intersectionPoint) = 0;
+        virtual Color* getPointColor(Vector3* intersectionPoint, Vector3* cameraDirectionVector, std::vector<SceneEntity*> lights) = 0;
+
+        virtual Vector3 getSurfaceNormal(Vector3* intersectionPoint) = 0;
 
         private:
             Vector3* position;

@@ -35,3 +35,5 @@ float Camera::getHorizontalFOV() {
 float Camera::getVerticalFOV() {
     return this->vfov;
 }
+
+Camera DEFAULT_CAMERA = Camera();

@@ -5,19 +5,25 @@ RaytracerRenderer::RaytracerRenderer(Scene* scene, Camera* camera, int imageWidt
     this->viewDistance = viewDistance;
     this->viewWindowWidth = 2 * viewDistance * std::tan(camera->getHorizontalFOV() * PI / 180.0 * 0.5f);
     this->viewWindowHeight = 2 * viewDistance * std::tan(camera->getVerticalFOV() * PI / 180.0 * 0.5f);
+    this->currRow = 0;
+    this->currCol = 0;
 }
 
 Color** RaytracerRenderer::renderScene() {
     this->rays = generateRays();
     Color** pixelColors = generatePixelColors();
 
-    for(int row = 0; row < this->imageHeight; row++) {
-        for(int col = 0; col < this->imageWidth; col++) {
-            pixelColors[row][col] = *traceRay(rays[row][col]);
+    for(this->currRow = 0; this->currRow < this->imageHeight; this->currRow++) {
+        for(this->currCol = 0; this->currCol < this->imageWidth; this->currCol++) {
+            pixelColors[this->currRow][this->currCol] = *traceRay(rays[this->currRow][this->currCol]);
         }
     }
 
     return pixelColors;
+}
+
+float RaytracerRenderer::getPercentageSceneRendered() {
+    return ((this->currRow * this->imageWidth) + (this->currCol + 1)) / (this->imageHeight * this->imageWidth);
 }
 
 Ray** RaytracerRenderer::generateRays() {
@@ -80,17 +86,18 @@ Color** RaytracerRenderer::generatePixelColors() {
     return pixelColors;
 }
 
-const Color* RaytracerRenderer::traceRay(Ray ray) {
+Color* RaytracerRenderer::traceRay(Ray ray) {
     SceneEntity* closestEntity = getClosestEntity(ray);
 
     if(closestEntity == nullptr) {
-        return &BLACK;
+        return scene->getBackgroundColor();
     }
 
     float closestDistance = closestEntity->intersectionDistance(&ray);
     Vector3 intersectionPoint = this->camera->getCameraRay()->getMemberPoint(closestDistance);
+    Vector3 cameraDirectionVector = -(*ray.getDirection());
     
-    return closestEntity->getPointColor(&intersectionPoint);
+    return closestEntity->getPointColor(&intersectionPoint, &cameraDirectionVector, this->scene->getLights());
 }
 
 float RaytracerRenderer::getShadowFlag(Ray ray) {

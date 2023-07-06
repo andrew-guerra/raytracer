@@ -21,8 +21,8 @@ class Sphere : public SceneEntity {
         Sphere(Vector3* center, double radius);
 
         virtual float intersectionDistance(Ray* ray);
-
-        virtual const Color* getPointColor(Vector3* intersectionPoint);
+        virtual Color* getPointColor(Vector3* intersectionPoint, Vector3* cameraDirectionVector, std::vector<SceneEntity*> entities);
+        virtual Vector3 getSurfaceNormal(Vector3* intersectionPoint);
         
     private:
         double radius;

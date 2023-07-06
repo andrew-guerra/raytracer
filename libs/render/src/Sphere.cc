@@ -31,6 +31,10 @@ float Sphere::intersectionDistance(Ray* ray) {
     return std::min(firstIntersection, secondIntersection);
 }
 
-const Color* Sphere::getPointColor(Vector3* intersectionPoint) {
+Color* Sphere::getPointColor(Vector3* intersectionPoint, Vector3* cameraDirectionVector, std::vector<SceneEntity*> lights) {
     return &BLUE;
+}
+
+Vector3 Sphere::getSurfaceNormal(Vector3* intersectionPoint) {
+    return (*intersectionPoint - *this->getPosition()) / this->radius;
 }

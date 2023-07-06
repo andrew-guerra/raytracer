@@ -60,4 +60,6 @@ class Camera {
         float vfov;
 };
 
+extern Camera DEFAULT_CAMERA;
+
 #endif

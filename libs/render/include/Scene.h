@@ -18,7 +18,7 @@ class Scene {
          * @param entities The entities of the Scene object
          * @param backgroundColor The color of the background of the scene
         */
-        Scene(std::vector<SceneEntity*>& entities, const Color* backgroundColor);
+        Scene(std::vector<SceneEntity*>& entities, std::vector<SceneEntity*> lights, Color* backgroundColor);
 
         /**
          * @brief Constructor for Scene object
@@ -43,14 +43,27 @@ class Scene {
         int getNumEntities();
 
         /**
+         * @brief Returns the lights in the Scene object
+         * @return The lights in the Scene object
+        */
+        std::vector<SceneEntity*> getLights();
+
+        /**
+         * @brief Returns the number of lights in the Scene object
+         * @return The number of lights in the Scene object
+        */
+        int getNumLights();
+
+        /**
          * @brief Returns the background color for the Scene object
          * @return The background color for the Scene object
         */
-        const Color* getBackgroundColor();
+        Color* getBackgroundColor();
 
     private:
         std::vector<SceneEntity*> entities;
-        const Color* backgroundColor;
+        std::vector<SceneEntity*> lights;
+        Color* backgroundColor;
 };
 
 #endif

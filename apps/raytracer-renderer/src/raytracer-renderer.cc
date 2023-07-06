@@ -1,32 +1,30 @@
-//#include "Sphere.h"
-//#include "RaytracerRenderer.h"
-//#include "PPMWriter.h"
-//#include "Vector3.h"
-//#include "Camera.h"
 #include "Sphere.h"
-//#include "Scene.h"
-//#include "Color.h"
-//#include "Ray.h"
 #include "RaytracerRenderer.h"
+#include "MaterialDecorator.h"
 #include "LightDecorator.h"
+#include "ConsoleRenderProgressTrackerDecorator.h"
 #include "PPMWriter.h"
 #include <iostream>
 
 int main(int argc, char** argv) {
-    Vector3* sphereLeft = new Vector3(-1, 0, -5);
-    Vector3* sphereRight = new Vector3(1, 0, -5);
-    Vector3* lightPos = new Vector3(0, 3, -5);
+    Vector3* sphereLeft = new Vector3(-2, 0, -5);
+    Vector3* sphereRight = new Vector3(2, 0, -5);
+    Vector3* sphereCenter = new Vector3(0, 0, -5);
+    Vector3* lightPos = new Vector3(0, 5, 0);
     Ray* ray = new Ray();
 
-    std::vector<SceneEntity*> entities{new Sphere(sphereLeft, 1), new Sphere(sphereRight, 1), new LightDecorator(new Sphere(lightPos, 1))};
+    //std::vector<SceneEntity*> entities{new Sphere(sphereCenter, 1)};
+    std::vector<SceneEntity*> entities{new MaterialDecorator(new Sphere(sphereLeft, 1), 0.2, 0.4, .4, 20), new MaterialDecorator(new Sphere(sphereRight, 1), 0.2, 0.6, 0.6, 20)};
+    std::vector<SceneEntity*> lights{new LightDecorator(new Sphere(lightPos, 1))};
 
-    Camera* camera = new Camera(new Ray(new Vector3(0, 0, 0), new Vector3(0, 0, -1)), new Vector3(0, 1, 0), 90, 90);
-    Scene* scene = new Scene(entities, &WHITE);
-    RaytracerRenderer* renderer = new RaytracerRenderer(scene, camera, 300, 300, 5);
+    Scene* scene = new Scene(entities, lights, &BLACK);
+
+    SceneRenderer* renderer = new RaytracerRenderer(scene, &DEFAULT_CAMERA, 600, 300, 5);
+    renderer = new ConsoleRenderProgressTrackerDecorator(renderer);
 
     Color** image = renderer->renderScene();
 
-    PPMWriter* imageWriter = new PPMWriter(255, "test.ppm", 300, 300);
+    PPMWriter* imageWriter = new PPMWriter(255, "test.ppm", 600, 300);
     imageWriter->writeImage(image);
 
     return 0;

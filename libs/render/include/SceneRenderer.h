@@ -21,10 +21,21 @@ class SceneRenderer {
         SceneRenderer(Scene* scene, Camera* camera, int imageWidth, int imageHeight);
 
         /**
+         * @brief Default constructor for SceneRenderer object
+        */
+        SceneRenderer();
+
+        /**
          * @brief Returns image of the rendered scene
          * @return The image of the rendered scene
         */
         virtual Color** renderScene() = 0;
+
+        /**
+         * @brief Returns the percentage of the scene that has been rendered (float 0-1)
+         * @return The percentage of the scene that has been rendered (float 0-1)
+        */
+        virtual float getPercentageSceneRendered() = 0;
 
     protected:
         Scene* scene;

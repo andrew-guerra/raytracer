@@ -1,6 +1,8 @@
 #ifndef COLOR_H
 #define COLOR_H
 
+#include <string>
+
 /**
  * @class Color
  * @brief Represents an RGB color
@@ -18,6 +20,12 @@ class Color {
         Color(double r, double g, double b);
 
         /**
+         * @brief Copy constructor for Color object
+         * @param otherColor The color to copy
+        */
+        Color(const Color& otherColor);
+
+        /**
          * @brief Gets the red compoenet of the Color object
         */
         double getRed();
@@ -32,16 +40,49 @@ class Color {
         */
         double getBlue();
 
+        /**
+         * @brief Returns the Color object made by the sum of the Color object and otherColor
+         * @param otherColor The color to add by
+         * @return The Color object made by the sum of the Color object and otherColor
+        */
+        Color operator+(Color otherColor);
+
+        /**
+         * @brief Returns the Color object made by the sum of the Color object and otherColor
+         * @param otherColor The color to add by
+         * @return The Color object made by the sum of the Color object and otherColor
+        */
+        Color operator+=(Color otherColor);
+
+        /**
+         * @brief Returns the Color object made by the product of the Color object and coefficient
+         * @param coefficent The coefficent to multiply by
+         * @return The Color object made by the product of the Color object and coefficient
+        */
+        Color operator*(float coefficent);
+
+        /**
+         * @brief Returns the Color object made by the product of the Color object and coefficient
+         * @param coefficent The coefficent to multiply by
+         * @return The Color object made by the product of the Color object and coefficient
+        */
+        Color multipyCoefficent(float coefficent);
+
+        std::string toString();
+
     private:
         double r;
         double g;
         double b;
+
+        float clampColorChannel(float num);
+        float clamp(float num, float min, float max);
 };
 
-const Color RED = Color(1.0f, 0.0f, 0.0f);
-const Color GREEN = Color(0.0f, 1.0f, 0.0f);
-const Color BLUE = Color(0.0f, 0.0f, 1.0f);
-const Color WHITE = Color(1.0f, 1.0f, 1.0f);
-const Color BLACK = Color(0.0f, 0.0f, 0.0f);
+extern Color RED;
+extern Color GREEN;
+extern Color BLUE;
+extern Color WHITE;
+extern Color BLACK;
 
 #endif
